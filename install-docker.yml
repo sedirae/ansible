@@ -1,0 +1,19 @@
+---
+- name: Installation de Docker et Docker Compose sur Debian 11
+  hosts: test
+  become: yes
+
+  tasks:
+    - name: Mise à jour de la liste des paquets
+      apt:
+        update_cache: yes
+
+    - name: Installation de Docker Engine
+      apt:
+        name: docker
+        state: latest
+
+    - name: Installation de Docker Compose
+      apt:
+        name: docker-compose
+        state: latest
