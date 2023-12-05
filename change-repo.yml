@@ -53,7 +53,6 @@
           deb http://carroll.lan.supplay.fr/deb.debian.org/debian/ bullseye main
           deb-src http://carroll.lan.supplay.fr/deb.debian.org/debian/ bullseye main
         insertafter: EOF
-        create: yes
         state: present
 
     - name: Ajouter les nouvelles lignes de carroll.lan.supplay.fr pour security.debian.org
@@ -63,5 +62,4 @@
           deb http://carroll.lan.supplay.fr/security.debian.org/debian-security/ bullseye-security main
           deb-src http://carroll.lan.supplay.fr/security.debian.org/debian-security/ bullseye-security main
         insertafter: EOF
-        create: yes
         state: present
