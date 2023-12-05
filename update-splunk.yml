@@ -2,6 +2,8 @@
 - name: Copier et installer un paquet .deb
   hosts: test
   become: yes
+  become_method: su
+  
   tasks:
     - name: Copier le paquet .deb sur le serveur distant
       ansible.builtin.copy:
