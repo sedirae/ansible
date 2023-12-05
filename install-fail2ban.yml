@@ -2,8 +2,12 @@
 - name: Mettre à jour la liste des paquets et installer fail2ban
   hosts: test
   become: yes
+  become_method: su
+  become_user: root
+  # Si un mot de passe est nécessaire pour su, vous pouvez le demander :
+  # become_ask_pass: yes
+  
   tasks:
-
     - name: Mettre à jour la liste des paquets et installation du paquet fail2ban
       ansible.builtin.apt:
         name: fail2ban
