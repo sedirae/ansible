@@ -1,5 +1,5 @@
 ---
-- name: Test Connection
+- name: test
   hosts: servers
   tasks:
     - name: Ping Hosts
