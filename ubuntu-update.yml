@@ -2,6 +2,8 @@
 - name: Mettre à jour et améliorer les paquets
   hosts: test
   become: yes
+  become_method: su
+  
   tasks:
     - name: Mettre à jour la liste des paquets
       ansible.builtin.apt:
