@@ -7,7 +7,7 @@
   tasks:
     - name: Copier le paquet .deb sur le serveur distant
       ansible.builtin.copy:
-        src: opt/splunkforwarder-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
+        src: /opt/splunkforwarder-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
         dest: /tmp/splunkforwarder-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
 
     - name: Installer le paquet .deb
