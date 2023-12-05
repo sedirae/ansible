@@ -1,6 +1,7 @@
 ---
 - name: Mettre à jour la liste des paquets et installer fail2ban
   hosts: test
+  ignore_unreachable: yes
   become: yes
   become_method: su
   become_user: root
