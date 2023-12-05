@@ -1,6 +1,6 @@
 ---
 - name: Copier et installer un paquet .deb
-  hosts: splunk
+  hosts: test
   become: yes
   tasks:
     - name: Copier le paquet .deb sur le serveur distant
