@@ -1,0 +1,13 @@
+---
+- name: Copier et installer un paquet .deb
+  hosts: splunk
+  become: yes
+  tasks:
+    - name: Copier le paquet .deb sur le serveur distant
+      ansible.builtin.copy:
+        src: splunkforwarder-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
+        dest: /tmp/votre_paquet.deb
+
+    - name: Installer le paquet .deb
+      ansible.builtin.apt:
+        deb: /tmp/votre_paquet.deb

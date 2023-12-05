@@ -1,0 +1,25 @@
+---
+- name: Déployer l'utilisateur ansible
+  hosts: test
+  become: yes
+  tasks:
+    - name: Créer l'utilisateur ansible 2
+      ansible.builtin.user:
+        name: ansible2
+        state: present
+        create_home: yes
+        shell: /bin/bash
+
+    - name: Ajouter la clé SSH publique pour l'utilisateur ansible
+      ansible.builtin.authorized_key:
+        user: ansible2
+        state: present
+        key: "{{ lookup('file', '~/.ssh/ansible2.pub') }}"
+
+    - name: Donner à l'utilisateur ansible des privilèges sudo sans mot de passe
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^ansible2'
+        line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'

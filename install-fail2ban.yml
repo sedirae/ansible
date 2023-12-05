@@ -1,0 +1,10 @@
+---
+- name: Mettre à jour la liste des paquets et installer fail2ban
+  become: yes
+  tasks:
+
+    - name: Mettre à jour la liste des paquets et installation du paquet fail2ban
+      ansible.builtin.apt:
+        name: fail2ban
+        update_cache: yes
+        state: present

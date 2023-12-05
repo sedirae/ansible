@@ -1,0 +1,40 @@
+---
+- name: Installer OpenSSH 9.5p1 à partir du source
+  hosts: test
+  become: yes
+  tasks:
+    - name: Installer les dépendances pour la compilation
+      package:
+        name:
+          - gcc
+          - make
+          - libssl-dev
+          - zlib1g-dev
+        state: present
+
+    - name: Télécharger OpenSSH 9.5p1
+      get_url:
+        url: https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.5p1.tar.gz
+        dest: /tmp/openssh-9.5p1.tar.gz
+        validate_certs: yes
+
+    - name: Extraire OpenSSH
+      unarchive:
+        src: /tmp/openssh-9.5p1.tar.gz
+        dest: /tmp/
+        remote_src: yes
+
+    - name: Configurer OpenSSH
+      command: ./configure
+      args:
+        chdir: /tmp/openssh-9.5p1/
+
+    - name: Compiler OpenSSH
+      command: make
+      args:
+        chdir: /tmp/openssh-9.5p1/
+
+    - name: Installer OpenSSH
+      command: make install
+      args:
+        chdir: /tmp/openssh-9.5p1/

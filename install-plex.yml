@@ -1,0 +1,20 @@
+---
+- name: Mettre à jour les paquets et installer plex depuis les repo officiels
+  hosts: client01
+  become: yes
+  tasks:
+    - name: Ajouter le repo plex au ficher source.list
+      ansible.builtin.apt_repository:
+        repo: deb https://downloads.plex.tv/repo/deb public main
+        state: present
+
+    - name: Télécharger et ajouter la clé Plex
+      ansible.builtin.apt_key:
+        url: https://downloads.plex.tv/plex-keys/PlexSign.key
+        state: present
+
+
+    - name: Mettre à jour la liste des paquets et installation du paquet plex
+      ansible.builtin.apt:
+        name: plexmediaserver
+        update_cache: yes

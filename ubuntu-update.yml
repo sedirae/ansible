@@ -1,0 +1,12 @@
+---
+- name: Mettre à jour et améliorer les paquets
+  hosts: test
+  become: yes
+  tasks:
+    - name: Mettre à jour la liste des paquets
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Améliorer tous les paquets
+      ansible.builtin.apt:
+        upgrade: yes
