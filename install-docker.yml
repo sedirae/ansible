@@ -2,6 +2,7 @@
 - name: Installation de Docker et Docker Compose sur Debian 11
   hosts: test
   become: yes
+  become_method: su
 
   tasks:
     - name: Mise à jour de la liste des paquets
