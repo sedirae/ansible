@@ -1,5 +1,6 @@
 ---
 - name: Mettre à jour la liste des paquets et installer fail2ban
+  hosts: test
   become: yes
   tasks:
 
