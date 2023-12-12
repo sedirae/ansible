@@ -1,6 +1,6 @@
 ---
 - name: Mettre à jour les paquets et installer plex depuis les repo officiels
-  hosts: client01
+  hosts: all
   become: yes
   tasks:
     - name: Ajouter le repo plex au ficher source.list
