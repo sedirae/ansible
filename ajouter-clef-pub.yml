@@ -1,6 +1,6 @@
 ---
 - name: Exporter la clé publique SSH vers un hôte
-  hosts: votre_hôte_cible
+  hosts: all
   become: yes
   tasks:
     - name: Copier la clé publique sur l'hôte distant
