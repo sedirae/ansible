@@ -1,0 +1,10 @@
+---
+- name: Exporter la clé publique SSH vers un hôte
+  hosts: votre_hôte_cible
+  become: yes
+  tasks:
+    - name: Copier la clé publique sur l'hôte distant
+      authorized_key:
+        user: nom_utilisateur_distant
+        state: present
+        key: "{{ lookup('file', '/chemin/vers/votre/cle.pub') }}"
