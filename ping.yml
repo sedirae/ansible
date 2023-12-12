@@ -1,6 +1,6 @@
 ---
 - name: Ping
-  hosts: test
+  hosts: all
   gather_facts: no
   ignore_unreachable: yes
   tasks:
