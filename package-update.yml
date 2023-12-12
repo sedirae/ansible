@@ -1,6 +1,6 @@
 ---
 - name: Mettre à jour et améliorer les paquets
-  hosts: test
+  hosts: all
   become: yes
   become_method: su
   
