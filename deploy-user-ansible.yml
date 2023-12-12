@@ -1,6 +1,6 @@
 ---
 - name: Déployer l'utilisateur ansible
-  hosts: test
+  hosts: all
   become: yes
   tasks:
     - name: Créer l'utilisateur ansible 2
