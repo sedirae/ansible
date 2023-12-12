@@ -1,6 +1,6 @@
 ---
 - name: Installation de Docker et Docker Compose sur Debian 11
-  hosts: test
+  hosts: all
   become: yes
   become_method: su
 
