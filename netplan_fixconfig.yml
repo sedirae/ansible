@@ -1,6 +1,6 @@
 ---
 - name: Configure Netplan
-  hosts: client02 # Remplacez ceci par votre groupe ou nom d'hôte
+  hosts: all
   become: yes
   tasks:
     - name: Configure network settings
