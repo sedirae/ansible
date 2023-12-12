@@ -1,6 +1,6 @@
 ---
 - name: Installer OpenSSH 9.5p1 à partir du source
-  hosts: test
+  hosts: all
   become: yes
   tasks:
     - name: Installer les dépendances pour la compilation
