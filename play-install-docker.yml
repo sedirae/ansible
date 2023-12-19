@@ -1,0 +1,66 @@
+---
+- name: Installation de Docker sur Debian 11
+  hosts: all
+  become: yes
+  become_method: su
+  vars:
+    docker_repo_url: "https://download.docker.com/linux/debian"
+
+  tasks:
+    - name: Mise à jour de la liste des paquets
+      apt:
+        update_cache: yes
+    
+    - name: Installation des dependences pour Docker
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+
+    - name: Créer le répertoire /etc/apt/keyrings
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Télécharger la clé GPG de Docker
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/debian/gpg
+        dest: /tmp/docker.gpg
+        force: no
+
+    - name: Convertir et déplacer la clé GPG de Docker
+      ansible.builtin.shell: |
+        gpg --dearmor -o /etc/apt/keyrings/docker.gpg /tmp/docker.gpg
+      args:
+        creates: /etc/apt/keyrings/docker.gpg
+
+    - name: Modifier les permissions du fichier de clé
+      ansible.builtin.file:
+        path: /etc/apt/keyrings/docker.gpg
+        mode: 'a+r'
+
+    - name: Ajouter le dépôt Docker aux sources APT
+      ansible.builtin.lineinfile:
+        path: /etc/apt/sources.list.d/docker.list
+        create: yes
+        line: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] {{ docker_repo_url }} bullseye stable"
+        state: present
+
+    - name: Installation de Docker CE et ses plugins
+      apt:
+        update_cache: yes
+        name: "{{ Docker }}"
+      vars:
+        Docker:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        state: present
