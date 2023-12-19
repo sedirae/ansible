@@ -2,7 +2,6 @@
 - name: Mettre à jour et améliorer les paquets
   hosts: all
   become: yes
-  become_method: su
   
   tasks:
     - name: Mettre à jour la liste des paquets
