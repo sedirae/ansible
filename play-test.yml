@@ -1,0 +1,12 @@
+---
+- name: Obtenir le nom de code de la version du système d'exploitation
+  hosts: all
+  tasks:
+    - name: Afficher le nom de code de la version de l'OS
+      debug:
+        msg: |
+          OS: {{ ansible_system }} {{ ansible_distribution }} ({{ ansible_distribution_version }}), Nom de code: {{ ansible_distribution_release }}, arch: {{ ansible_architecture }}
+          Kernel version: {{ ansible_kernel }}
+          {{ ansible_hostname }} : Donne le nom d'hôte court du système.
+          {{ ansible_fqdn }} : Renvoie le nom de domaine complet (Fully Qualified Domain Name) du système.
+          {{ ansible_domain }} : Fournit le domaine DNS du système.
