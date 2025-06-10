@@ -13,12 +13,12 @@
     - name: Installation des dependences pour Docker
       apt:
         name: "{{ packages }}"
+        state: present
       vars:
         packages:
           - ca-certificates
           - curl
           - gnupg
-        state: present
 
     - name: Créer le répertoire /etc/apt/keyrings
       ansible.builtin.file:
@@ -53,13 +53,12 @@
     - name: Installation de Docker CE et ses plugins
       apt:
         update_cache: yes
-        name: "{{ Docker }}"
+        name: "{{ docker_packages }}"
+        state: latest
       vars:
-        Docker:
+        docker_packages:
           - docker-ce
           - docker-ce-cli
           - containerd.io
           - docker-buildx-plugin
           - docker-compose-plugin
-        state: latest
-        state: present
